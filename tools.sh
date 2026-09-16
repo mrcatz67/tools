@@ -1,6 +1,6 @@
 R='\033[1;31m'; W='\033[1;37m'; NC='\033[0m'
 
-VERSION="5.0"
+VERSION="1.0"
 
 banner() {
   clear
@@ -12,7 +12,7 @@ banner() {
   echo '██║     ██║  ██║   ██║   ███████╗ ╚████╔╝ ███████╗'
   echo '╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚══════╝  ╚═══╝  ╚══════╝'
   echo -e "${NC}"
-  echo -e "${W}              TT : @mr.catz67${NC}"
+  echo -e "${W}              TT : @mr.catz67 | tools ini masih memiliki banyak bug${NC}"
   echo -e "${R}════════════════════════════════════════════════════${NC}"
   echo
 }
