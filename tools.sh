@@ -10,9 +10,9 @@ banner() {
   echo '██████╔╝███████║ ╚████╔╝   ███╔╝ ██║   ██║  ███╔╝ '
   echo '██╔═══╝ ██╔══██║  ╚██╔╝   ███╔╝  ╚██╗ ██╔╝ ███╔╝  '
   echo '██║     ██║  ██║   ██║   ███████╗ ╚████╔╝ ███████╗'
-  echo '╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚══════╝  ╚═══╝  ╚══════╝'
+  echo '╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚══════╝  ╚═╝  ╚══════╝'
   echo -e "${NC}"
-  echo -e "${W}              TT : @mr.catz67 | tools ini masih memiliki banyak bug${NC}"
+  echo -e "${W}TT : @mr.catz67 | Tools Ini Masih Memiliki Banyak Bug${NC}"
   echo -e "${R}════════════════════════════════════════════════════${NC}"
   echo
 }
@@ -24,6 +24,19 @@ need() {
     echo -e "${R}[i] Install $2...${NC}"
     pkg install "$2" -y || { echo -e "${R}[!] Gagal install $2${NC}"; return 1; }
   fi
+}
+
+update_tools() {
+  clear; banner
+  echo -e "${R}[*] Mengecek pembaruan dari GitHub...${NC}"
+  local remote_url="https://raw.githubusercontent.com/mrcatz67/tools/main/pyz.sh?nocache=$(date +%s)"
+  if curl -sL "$remote_url" -o "$0"; then
+    chmod +x "$0"
+    echo -e "${R}[OK] Tools berhasil diperbarui! Silakan jalankan ulang script ini.${NC}"
+  else
+    echo -e "${R}[!] Gagal mengunduh pembaruan.${NC}"
+  fi
+  pause
 }
 
 menu() {
@@ -38,6 +51,7 @@ menu() {
   echo -e "${R}[8]${NC}  Fun & Misc"
   echo -e "${R}[9]${NC}  Setup Awal (install semua)"
   echo -e "${R}[10]${NC} Info Fitur"
+  echo -e "${R}[11]${NC} Update Tools"
   echo -e "${R}[0]${NC}  Keluar"
   echo
   read -rp "$(echo -e ${R}Pilih >> ${NC})" opt
@@ -57,6 +71,8 @@ info_fitur() {
     echo -e "${R}[7]${NC}  Server & Remote"
     echo -e "${R}[8]${NC}  Fun & Misc"
     echo -e "${R}[9]${NC}  Setup Awal"
+    echo -e "${R}[10]${NC} Info Fitur"
+    echo -e "${R}[11]${NC} Update Tools"
     echo -e "${R}[0]${NC}  Kembali"
     echo
     read -rp "$(echo -e ${R}Pilih kategori >> ${NC})" inf
@@ -133,6 +149,7 @@ info_fitur() {
          echo -e "${R}== SETUP AWAL ==${NC}"
          echo "Auto install semua package."
          pause;;
+      11) update_tools;;
       0) return;;
       *) echo -e "${R}Pilihan salah${NC}"; sleep 1;;
     esac
@@ -388,6 +405,7 @@ while true; do
     8) sub_fun;;
     9) setup_all;;
     10) info_fitur;;
+    11) update_tools;;
     0) echo -e "${R}Sampai jumpa, Tuan.${NC}"; exit 0;;
     *) echo -e "${R}Pilihan salah${NC}"; sleep 1;;
   esac
